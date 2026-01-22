@@ -1,0 +1,62 @@
+
+WalkAnimation.png
+size: 256, 64
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+WobbleCharecter_walk
+  rotate: false
+  xy: 2, 2
+  size: 39, 54
+  orig: 39, 54
+  offset: 0, 0
+  index: 1
+WobbleCharecter_walk
+  rotate: false
+  xy: 2, 2
+  size: 39, 54
+  orig: 39, 54
+  offset: 0, 0
+  index: 5
+WobbleCharecter_walk
+  rotate: false
+  xy: 43, 2
+  size: 39, 54
+  orig: 39, 54
+  offset: 0, 0
+  index: 2
+WobbleCharecter_walk
+  rotate: false
+  xy: 43, 2
+  size: 39, 54
+  orig: 39, 54
+  offset: 0, 0
+  index: 4
+WobbleCharecter_walk
+  rotate: false
+  xy: 84, 2
+  size: 39, 54
+  orig: 39, 54
+  offset: 0, 0
+  index: 3
+WobbleCharecter_walk
+  rotate: false
+  xy: 125, 2
+  size: 39, 54
+  orig: 39, 54
+  offset: 0, 0
+  index: 6
+WobbleCharecter_walk
+  rotate: false
+  xy: 125, 2
+  size: 39, 54
+  orig: 39, 54
+  offset: 0, 0
+  index: 8
+WobbleCharecter_walk
+  rotate: false
+  xy: 166, 2
+  size: 39, 54
+  orig: 39, 54
+  offset: 0, 0
+  index: 7

@@ -1,5 +1,6 @@
 package com.IanMuggli.wobbles;
 
+import com.IanMuggli.wobbles.Assets.MapAsset;
 import com.IanMuggli.wobbles.Assets.WobblesAssetService;
 import com.IanMuggli.wobbles.Util.ScrollInput;
 import com.IanMuggli.wobbles.components.GameObject;
@@ -48,6 +49,7 @@ public class Main extends Game {
         this.inputProcessor = new ScrollInput(this.player.getCamera());
         Gdx.input.setInputProcessor(this.inputProcessor);
         this.wobblesAssetService = new WobblesAssetService(new InternalFileHandleResolver());
+        this.wobblesAssetService.load(MapAsset.TestMap);
 
         //Add player to the list of rendered objects
         this.renderedGameObjects.add(this.player);
@@ -70,6 +72,11 @@ public class Main extends Game {
     }
 
     private void logic() {
+
+        //Block running for 16ms per cycle for asset loading, then return to the flow
+        wobblesAssetService.update(16);
+
+        //Process controls
         switch (this.controlContext.getState())
         {
             case InventoryOpen:

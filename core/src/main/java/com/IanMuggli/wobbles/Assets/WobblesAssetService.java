@@ -14,7 +14,7 @@ public class WobblesAssetService implements Disposable {
         this.assetManager = new AssetManager(fileHandleResolver);
         this.assetManager.setLoader(TiledMap.class, new TmxMapLoader());
     }
-    
+
     public <T> T load(Asset<T> asset)
     {
         assetManager.load(asset.getDescriptor());
@@ -32,9 +32,9 @@ public class WobblesAssetService implements Disposable {
         return this.assetManager.get(asset.getDescriptor());
     }
 
-    public <T> boolean update(Asset<T> asset)
+    public <T> boolean update(int millisecondsToBlock)
     {
-        return this.assetManager.update();
+        return this.assetManager.update(millisecondsToBlock);
     }
 
     public <T> void debugDiagnostics(Asset<T> asset)
