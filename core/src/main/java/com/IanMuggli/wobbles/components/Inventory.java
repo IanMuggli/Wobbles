@@ -31,6 +31,4 @@ public class Inventory extends GameObject {
     public float getYPos() {return this.yPos;}
     @Override
     public float[] getColor() {return this.color;}
-    @Override
-    public Shape getShape() {return Shape.Rectangle;}
 }

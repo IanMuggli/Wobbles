@@ -2,12 +2,7 @@ package com.IanMuggli.wobbles.components;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.math.Vector3;
-
-import java.lang.reflect.Array;
 import java.util.List;
-
-import static java.lang.Math.abs;
 
 public class Player extends GameObject {
     float height; //Player hitbox height in game units
@@ -105,6 +100,4 @@ public class Player extends GameObject {
     public float getYPos() {return this.yPos;}
     @Override
     public float[] getColor() {return this.color;}
-    @Override
-    public Shape getShape() {return Shape.Circle;}
 }
