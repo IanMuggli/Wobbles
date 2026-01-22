@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
@@ -14,10 +15,11 @@ import com.badlogic.gdx.math.Rectangle;
 public class FirstScreen implements Screen {
 
     Main game;
+    Texture mapTexture;
 
-    ShapeRenderer shape;
     FirstScreen(Main game) {
         this.game = game;
+        this.mapTexture = new Texture("C:\\Users\\ianmu\\OneDrive\\Desktop\\Wobbles\\core\\src\\main\\java\\com\\IanMuggli\\wobbles\\Assets\\Images\\WobblesTestBackground.png");
     }
 
     @Override
@@ -38,8 +40,14 @@ public class FirstScreen implements Screen {
         game.shapeRenderer.setProjectionMatrix(game.player.getCamera().combined);
 
         //Do Stuff
-        game.shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        game.spriteBatch.setProjectionMatrix(this.game.player.getCamera().combined);
+        game.spriteBatch.begin();
+        game.spriteBatch.draw(this.mapTexture,0f,0);
+        game.spriteBatch.draw(this.mapTexture,1900f,0);
+        game.spriteBatch.draw(this.mapTexture,-1900f,0);
+        game.spriteBatch.end();
 
+        game.shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         for(GameObject gameObject:game.renderedGameObjects)
         {
             game.shapeRenderer.setColor(gameObject.getColor()[0],gameObject.getColor()[1],gameObject.getColor()[2],1f);
@@ -53,7 +61,6 @@ public class FirstScreen implements Screen {
                     break;
             }
         }
-
         game.shapeRenderer.end();
     }
 
@@ -85,5 +92,6 @@ public class FirstScreen implements Screen {
     @Override
     public void dispose() {
         game.shapeRenderer.dispose();
+        game.spriteBatch.dispose();
     }
 }
