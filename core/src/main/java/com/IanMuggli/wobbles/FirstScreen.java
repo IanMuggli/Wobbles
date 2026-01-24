@@ -7,24 +7,26 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthoCachedTiledMapRenderer;
 
 /** First screen of the application. Displayed after the application is created. */
 public class FirstScreen implements Screen {
 
-    Main game;
-    Texture mapTexture;
-    private final OrthoCachedTiledMapRenderer mapRenderer;
+    private final Main game;
+    private final Texture mapTexture;
+    private OrthoCachedTiledMapRenderer mapRenderer;
+    private TiledMap map;
 
     FirstScreen(Main game) {
         this.game = game;
         this.mapTexture = new Texture("Images/WobblesTestBackground.png");
-        this.mapRenderer = new OrthoCachedTiledMapRenderer(this.game.wobblesAssetService.get(MapAsset.TestMap), 1f/16f);
     }
 
     @Override
     public void show() {
-        this.game.wobblesAssetService.load(MapAsset.TestMap);
+        this.map = this.game.wobblesAssetService.load(MapAsset.TestMap);
+        this.mapRenderer = new OrthoCachedTiledMapRenderer(map, 1f);
     }
 
     @Override
@@ -35,8 +37,6 @@ public class FirstScreen implements Screen {
 
         //Set a black color
         this.game.spriteBatch.setColor(Color.WHITE);
-        this.mapRenderer.setView(this.game.player.getCamera());
-        this.mapRenderer.render();
 
         //Update camera in case zoom changed
         game.player.getCamera().update();
@@ -51,21 +51,15 @@ public class FirstScreen implements Screen {
         game.spriteBatch.draw(this.mapTexture,-1900f,0);
         game.spriteBatch.end();
 
-//        game.shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-//        for(GameObject gameObject:game.renderedGameObjects)
-//        {
-//            game.shapeRenderer.setColor(gameObject.getColor()[0],gameObject.getColor()[1],gameObject.getColor()[2],1f);
-//            switch (gameObject.getShape())
-//            {
-//                case Circle:
-//                    game.shapeRenderer.circle(gameObject.getXPos(),gameObject.getYPos(),10,10);
-//                    break;
-//                case Rectangle:
-//                    game.shapeRenderer.rect(gameObject.getXPos(),gameObject.getYPos(),40,40);
-//                    break;
-//            }
-//        }
-//        game.shapeRenderer.end();
+        this.mapRenderer.setView(this.game.player.getCamera());
+        this.mapRenderer.render();
+
+        game.spriteBatch.begin();
+        for(GameObject gameObject:game.renderedGameObjects)
+        {
+            game.spriteBatch.draw(new Texture("Images/PlayerIdleAnimation/WobbleCharecter_idle_01.png"), gameObject.getXPos(),gameObject.getYPos(),39,54);
+        }
+        game.spriteBatch.end();
     }
 
     @Override
@@ -95,6 +89,7 @@ public class FirstScreen implements Screen {
 
     @Override
     public void dispose() {
+        this.map.dispose();
         this.game.spriteBatch.dispose();
         this.mapRenderer.dispose();
     }

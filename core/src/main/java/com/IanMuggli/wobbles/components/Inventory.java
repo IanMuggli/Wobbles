@@ -29,6 +29,4 @@ public class Inventory extends GameObject {
     public float getXPos() {return this.xPos;}
     @Override
     public float getYPos() {return this.yPos;}
-    @Override
-    public float[] getColor() {return this.color;}
 }
